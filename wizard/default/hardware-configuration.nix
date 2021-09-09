@@ -4,20 +4,27 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "ums_realtek" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "usb_storage" "ums_realtek" "sd_mod" "sr_mod" ];
+  # configure proprietary drivers
+  nixpkgs.config.allowUnfree = true;
+  boot.initrd.kernelModules = [ "wl" ];
+  boot.kernelModules = [ "kvm-intel" "wl" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/a5d6e912-273b-4087-b633-2332a44b6a57";
       fsType = "ext4";
     };
 
+  # for storage devices
+  fileSystems."/mnt/Storage" =
+    { device = "/dev/disk/by-uuid/B901-794A";
+      fsType = "vfat";
+    };
+
   swapDevices = [ ];
 
+  virtualisation.virtualbox.guest.enable = true;
 }

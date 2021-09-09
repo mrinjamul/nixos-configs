@@ -22,6 +22,10 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;
+ 
+  # enable network Manager
+  # networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -81,18 +85,15 @@
      vim
      # cli programs
      xsel
-     pciutils
      wget
      curl
      htop
      nmap
      neofetch
      tmux
-     cmus
      git
      # gui programs
      firefox
-     mpv
      # extras
    ];
 

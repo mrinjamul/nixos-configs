@@ -1,3 +1,4 @@
+# Injamul Mohammad Mollah <mrinjamul@gmail.com> © 2021
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -21,6 +22,10 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;
+ 
+  # enable network Manager
+  # networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -28,8 +33,9 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp0s3.useDHCP = true;
+  networking.useDHCP = true;
+  networking.interfaces.enp9s0.useDHCP = true;
+  # networking.interfaces.enp0s3.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -69,6 +75,7 @@
   users.users.injamul = {
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     # shell = pkgs.zsh; # default zsh for me
    };
 
   # List packages installed in system profile. To search, run:
@@ -78,23 +85,23 @@
      vim
      # cli programs
      xsel
+     pciutils
      wget
      curl
      htop
      nmap
      neofetch
-     cmatrix
      tmux
      git
      # gui programs
      firefox
+     mpv
      # extras
    ];
 
   # enable zsh
   programs.zsh.enable = true;
   # users.defaultUserShell = pkgs.zsh; # for all users
-  users.users.injamul.shell = pkgs.zsh;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

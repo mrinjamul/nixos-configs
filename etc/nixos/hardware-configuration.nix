@@ -6,14 +6,22 @@
 {
   imports = [ ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "usb_storage" "ums_realtek" "sd_mod" "sr_mod" ];
+  # configure proprietary drivers
+  nixpkgs.config.allowUnfree = true;
+  boot.initrd.kernelModules = [ "wl" ];
+  boot.kernelModules = [ "kvm-intel" "wl" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ad238452-fd4b-4df4-b7cf-3cda4b6f8c90";
+    { device = "/dev/disk/by-uuid/a5d6e912-273b-4087-b633-2332a44b6a57";
       fsType = "ext4";
+    };
+
+  # for storage devices
+  fileSystems."/mnt/Storage" =
+    { device = "/dev/disk/by-uuid/B901-794A";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];
