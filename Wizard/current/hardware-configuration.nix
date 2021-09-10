@@ -18,7 +18,13 @@
       fsType = "ext4";
     };
 
+  # for storage devices
+  fileSystems."/mnt/Storage" =
+    { device = "/dev/disk/by-uuid/B901-794A";
+      fsType = "vfat";
+    };
+
   swapDevices = [ ];
 
-  virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.enable = true; # disable as it is not in virtualbox
 }

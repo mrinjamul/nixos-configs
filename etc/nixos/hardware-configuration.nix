@@ -26,5 +26,5 @@
 
   swapDevices = [ ];
 
-  virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.enable = true; # disable as it is not in virtualbox
 }

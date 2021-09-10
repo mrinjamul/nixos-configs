@@ -78,6 +78,10 @@
      # shell = pkgs.zsh; # default zsh for me
    };
 
+  # Enable proprietary software sources 
+  nixpkgs.config.allowUnfree = true;
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -85,17 +89,41 @@
      vim
      # cli programs
      xsel
+     pciutils
+     powertop
+     tree
      wget
      curl
      htop
      nmap
      neofetch
      tmux
+     cmus
      git
      # gui programs
      firefox
+     mpv
      # extras
+     go
+     nodejs
+     vscode
    ];
+
+  # Virtualbox
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "injamul" ];
+  # virtualisation.virtualbox.host.enableExtensionPack = true; # For usb2 and usb3 support
+
+
+  #----=[ Fonts ]=----#
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+  ];
 
   # enable zsh
   programs.zsh.enable = true;
