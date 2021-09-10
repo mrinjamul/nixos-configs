@@ -19,9 +19,13 @@
     };
 
   # for storage devices
+  # Enable NTFS
+  boot.supportedFilesystems = [ "ntfs" ];
+
   fileSystems."/mnt/Storage" =
     { device = "/dev/disk/by-uuid/B901-794A";
-      fsType = "vfat";
+      fsType = "auto";
+      options = [ "defaults" "injamul" "rw" "utf8" "noauto" "umask=000" ];
     };
 
   swapDevices = [ ];
