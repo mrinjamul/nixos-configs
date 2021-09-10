@@ -22,11 +22,11 @@
   # Enable NTFS
   boot.supportedFilesystems = [ "ntfs" ];
 
-  fileSystems."/mnt/Storage" =
-    { device = "/dev/disk/by-uuid/B901-794A";
-      fsType = "auto";
-      options = [ "defaults" "injamul" "rw" "utf8" "noauto" "umask=000" ];
-    };
+  # fileSystems."/mnt/Storage" =
+  #   { device = "/dev/disk/by-uuid/B901-794A";
+  #     fsType = "vfat";
+  #     options = [ "defaults" "injamul" "rw" "utf8" "noauto" "umask=000" ];
+  #   };
 
   swapDevices = [ ];
 
