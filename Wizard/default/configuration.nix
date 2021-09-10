@@ -85,7 +85,6 @@
      vim
      # cli programs
      xsel
-     pciutils
      wget
      curl
      htop
@@ -95,19 +94,8 @@
      git
      # gui programs
      firefox
-     mpv
      # extras
    ];
-
-  #----=[ Fonts ]=----#
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-  ];
 
   # enable zsh
   programs.zsh.enable = true;
