@@ -25,7 +25,17 @@
   networking.wireless.enable = true;
  
   # enable network Manager
-  # networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
+  networking.wireless.networks = {
+   "Injamul" = {         # SSID with spaces and/or special characters
+      psk = "xInjamul";
+    };
+  };
+
+  # nm and wpa can be used together
+  networking.networkmanager.unmanaged = [
+    "*" "except:type:wwan" "except:type:gsm"
+  ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -74,7 +84,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.injamul = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAdBDm14oS8IVMFIdvbfKIYKq1/lT1bbnTalKvtjo7a8T1XvpoVhSsqkPq3l0IXXC+I+LJWph031T6gcgA0EMMphBv8zdu7wFBBCDpdtv0EAwIokMQLX8x6++CDbeXA6mrNsbhuBmvObtDyHXMDv7P48pZfdl4Ga6zcTLqQjM1QdWc8RJ36h+QpP3Bmr95ZZbaiKCdGWZkSaDLjULWFEqsEn+CiAA22W1Q7xUosQ6AinLlCc+hypzONebYPFxdOMERdYU6PF8/A1XyIPMPgzLH5JE7TD+DqnxwFlw1sRIX9HPwBQ6tBT0Fhg3DQLxv1k/KHpmz6AssMhKYXqZcRywzgJ2YiiFFra1tQ4ikL9Rc5H2zV2A/2M6jKIfP6uVxvgNoMrloSO8rHaXLMgXlCWegcUEcmzLPp5SlwIIqokZS4vdfXPSnKJ6KfFQSKLBvWdcPB1jS2wTG1X9PATx109pJ2rnlKfUriwY5SemUoC/yydOYFrg5P+EEA+c6YFHx85wK2Jd2UXu9zfIRynlnIsFnoS34anXzHDkhNfDkyxp+ubIFmocNGNhYV6YYSDRpRKAaxBfowsNbSJt3Nc4tSa3u0gh2dk8gXyhytdUQLk2du+qc+A9TRGP3brGY8WC8Z1OKE/MjdzOIM37PqUcrkgm2e+0fV6m4/y1ZXSw4jd6TwQ== mrinjamul@gmail.com" ];
      # shell = pkgs.zsh; # default zsh for me
    };
 
