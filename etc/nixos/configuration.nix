@@ -22,20 +22,21 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.enable = true;
+  # networking.wireless.enable = true;
+  # networking.wireless.networks = {
+  #  "Injamul" = {         # SSID with spaces and/or special characters
+  #     psk = "xInjamul";
+  #   };
+  # };
+
+
  
   # enable network Manager
   networking.networkmanager.enable = true;
-  networking.wireless.networks = {
-   "Injamul" = {         # SSID with spaces and/or special characters
-      psk = "xInjamul";
-    };
-  };
-
   # nm and wpa can be used together
-  networking.networkmanager.unmanaged = [
-    "*" "except:type:wwan" "except:type:gsm"
-  ];
+  # networking.networkmanager.unmanaged = [
+  #   "*" "except:type:wwan" "except:type:gsm"
+  # ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -43,7 +44,7 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = true;
+  # networking.useDHCP = true; # disable it if you are using nmcli
   networking.interfaces.enp9s0.useDHCP = true;
   # networking.interfaces.enp0s3.useDHCP = true;
 
